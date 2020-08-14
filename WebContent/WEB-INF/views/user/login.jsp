@@ -25,9 +25,9 @@ function doLogin(){
    var id = document.querySelector('#id').value;
    var pwd = document.querySelector('#pwd').value;
    var params = {
-         id : id,
-         pwd : pwd
-   };
+         ui_id : id,
+         ui_password : pwd
+   }
    var xhr = new XMLHttpRequest();
    xhr.open('POST','/user/login');
    xhr.onreadystatechange = function(){
@@ -35,9 +35,12 @@ function doLogin(){
 		   if(xhr.status==200){
 			   var res = JSON.parse(xhr.responseText);
 			   alert(res.msg);
+		   }if(res.result=='ok'){
+			   location.href='/';
 		   }
 	   }
    }
+
    
    xhr.send(JSON.stringify(params));
 }
